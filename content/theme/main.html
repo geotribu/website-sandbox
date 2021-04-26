@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+
+{# Jinja template used as page for every page of the website. #}
+
+
+{% block extrahead %}
+  <meta property="robots" content="all" />
+  {# RSS Feed #}
+  <link rel="alternate" type="application/rss+xml" title="RSS feed of created content" href="{{ config.site_url }}feed_rss_created.xml">
+  <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="{{ config.site_url }}feed_rss_updated.xml">
+  {# Meta title #}
+  {% set title = config.site_name %}
+  {% if page and page.meta and page.meta.title %}
+  {% set title = title ~ " - " ~ page.meta.title %}
+  {% elif page and page.title and not page.is_homepage %}
+  {% set title = title ~ " - " ~ page.title | striptags %}
+  {% endif %}
+  {# Meta date #}
+  {% if page and page.meta and page.meta.date %}
+  {% set date = page.meta.date %}
+  {% endif %}
+  {# Meta description #}
+  {% set description = config.site_description %}
+  {% if page and page.meta and page.meta.description %}
+  {% set description = page.meta.description | striptags %}
+  {% elif page and page.description and not page.is_homepage %}
+  {% set description = page.description | striptags %}
+  {% endif %}
+  {# Meta image #}
+  {% set image = 'https://cdn.geotribu.fr/img/internal/charte/geotribu_banner.jpg' %}
+  {% if page and page.meta and page.meta.image %}
+  {% set image = page.meta.image %}
+  {% endif %}
+  {# Meta author #}
+  {% set author = config.site_author %}
+  {% if page and page.meta and page.meta.authors and not page.is_homepage %}
+  {% set author = page.meta.authors %}
+  {% elif page and page.meta and page.meta.author and not page.is_homepage %}
+  {% set author = page.meta.author %}
+  {% endif %}
+
+  {% if author is iterable and (author is not string and author is not mapping) %}
+  {% for a in author %}
+  {% if author != config.site_author %}
+  <meta name="author" content="{{ a }}">
+  {% endif %}
+  {% endfor %}
+  {% elif author is string and author != config.site_author %}
+  <meta name="author" content="{{ author }}">
+  {% endif %}
+
+  {# Meta type #}
+  {% if page.is_homepage %}
+  {% set type = "website" %}
+  {% else %}
+  {% set type = "article" %}
+  {% endif %}
+
+  {# OpenGraph #}
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:image" content="{{ image }}">
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:title" content="{{ title }}">
+  <meta property="og:type" content="{{ type }}">
+  <meta property="og:url" content="{{ page.canonical_url }}">
+  {# Twitter #}
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@geojulien" />
+  <meta name="twitter:description" content="{{ description }}">
+  <meta name="twitter:dnt" content="on">
+  <meta name="twitter:image" content="{{ image }}">
+  <meta name="twitter:site" content="@geotribu" />
+  <meta name="twitter:title" content="{{ title }}">
+  <meta name="twitter:widgets:align" content="center">
+  {# Structured data using schema.org #}
+  {% if type == "article" %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ page.canonical_url }}"
+      },
+      "headline": "{{ title }}",
+      "abstract": "{{ description }}",
+      "datePublished": "{{ date }}",
+      "image": "{{ image }}",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Geotribu",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://cdn.geotribu.fr/img/internal/charte/geotribu_logo_64x64.png"
+        }
+      }
+    }
+    </script>
+{% endif %}
+{% endblock %}
+
+{% block libs %}
+  {# Handle Twitter oEmbed - See #54 #}
+  <script charset="utf-8" id="twitter-wjs" type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
+
+  {# Specific JS libraries for homepage #}
+  {% if page.is_homepage %}
+    {# <script src=theme/assets/javascripts/glider.min.js></script> #}
+  {% endif %}
+
+{% endblock %}
+
+{% block disqus %}
+
+  {% if not page.is_homepage %}
+    {# Authoring based on git log #}
+    <div class="md-source-date">
+      <small>
+        Contributions à cette page : {{ git_page_authors }}
+      </small>
+    </div>
+
+    {# Comment system (Isso) #}
+    <div id="__comments">
+      <script
+        data-isso="{{ config.extra.comments_url }}/"
+        data-isso-require-author="true"
+        data-isso-require-email="true"
+        data-isso-reply-to-self="false"
+        data-isso-vote="true"
+        src="{{ config.extra.comments_url }}/js/embed.min.js">
+      </script>
+      <hr><section id="isso-thread"><h2>Commentaires</h2></section>
+      <noscript>Please enable JavaScript to view the comments.</noscript>
+    </div>
+  {% endif %}
+{% endblock %}
+
+{% block analytics %}
+  {{ super() }}
+  <script defer>
+    document.addEventListener("DOMContentLoaded", function() {
+      document.body.addEventListener("click", ev => {
+        if (ev.target instanceof HTMLElement) {
+          var el = ev.target.closest("a[href^=http]")
+          if (el)
+            ga("send", "event", "outbound", "click", el.href)
+        }
+      })
+    })
+  </script>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript">
+    // Translate - set before any binding
+    WAMediaBox.lang = {
+      prev: "Précédente",
+      next: "Suivante",
+      close: "Fermer",
+      openInNew: "Ouvrir dans un nouvel onglet"
+    };
+
+  </script>
+{% endblock scripts %}
+

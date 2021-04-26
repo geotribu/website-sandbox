@@ -1,0 +1,21 @@
+-i https://pypi.org/simple
+
+# Common requirements
+# -----------------------
+setuptools
+wheel
+
+# Development
+# -----------------------
+pre-commit>=2.10,<2.12
+
+# Project requirements
+# -----------------------
+
+mkdocs-awesome-pages-plugin>=2.4,<2.6
+mkdocs-exclude>=1.0,<1.1
+mkdocs-git-authors-plugin==0.3.*
+mkdocs-git-revision-date-localized-plugin>=0.6,<0.9
+mkdocs-material>=7.1,<7.2
+mkdocs-minify-plugin==0.4.*
+mkdocs-rss-plugin>=0.14,<0.15

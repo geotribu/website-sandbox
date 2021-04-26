@@ -1,0 +1,12 @@
+title: Guides de rédaction
+
+nav:
+    - markdown_basics.md
+    - markdown_quality.md
+    - metadata_yaml_frontmatter.md
+    - image.md
+    - twitter.md
+    - video.md
+    - emoji.md
+    - diagrams.md
+    - authoring.md
