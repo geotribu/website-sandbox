@@ -28,6 +28,7 @@ plugins:
   - git-authors:
       show_contribution: true
   - git-revision-date-localized:
+      enable_creation_date: true
       fallback_to_build_date: true
   - minify:
       minify_html: true
@@ -36,6 +37,7 @@ plugins:
         remove_comments: true
   - rss:
       abstract_chars_count: 500
+      comments_path: "#__comments"
       date_from_meta:
         as_creation: "date"
         as_update: false
@@ -43,7 +45,11 @@ plugins:
       image: "https://cdn.geotribu.fr/img/internal/charte/geotribu_logo_64x64.png"
       length: 40
       match_path: "(articles|rdp)/.*"
-      pretty_print: true
+      pretty_print: false
+      url_parameters:
+        utm_source: "rss-feed"
+        utm_medium: "RSS"
+        utm_campaign: "feed-syndication"
   - search:
       lang: fr
       prebuild_index: !!python/object/apply:os.getenv ["MKDOCS_SEARCH_PREBUILD_INDEX"]
@@ -115,11 +121,6 @@ theme:
         name: Basculer en mode clair
 
 
-credits:
-  - https://containerssh.io/
-  - https://github.com/aws/copilot-cli/
-  - https://up42.github.io/up42-py/
-
 # Integrations with 3rd party
 google_analytics:
   - !!python/object/apply:os.getenv ["MKDOCS_GOOGLE_ANALYTICS_KEY"]
@@ -127,7 +128,12 @@ google_analytics:
 
 # Customization
 extra:
-  comments_url: https://comments.geotribu.fr  # isso url
+  credits:
+    - https://containerssh.io/
+    - https://github.com/aws/copilot-cli/
+    - https://up42.github.io/up42-py/
+  # comments_url: https://comments.geotribu.fr  # isso url
+  comments_url: http://localhost:8080  # isso url
   manifest: 'manifest.webmanifest'  # PWA declaration
   social:
     - icon: 'fontawesome/solid/rss'
