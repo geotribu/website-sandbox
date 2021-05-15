@@ -1,7 +1,7 @@
 {
   "short_name": "geotribu",
-  "name": "Geotribu",
-  "description": "Veille libre sur le petit monde de la g&eacute;omatique",
+  "name": "Geotribu Sandbox",
+  "description": "Veille libre sur la g&eacute;omatique open source.",
   "lang": "fr",
   "icons": [
     {
@@ -10,8 +10,8 @@
       "sizes": "192x192"
     }
   ],
-  "start_url": "/?utm_source=web_app_manifest&utm_medium=pwa",
-  "background_color": "#3366cc",
+  "start_url": "/?utm_source=web_app_manifest&utm_medium=pwa&utm_campaign=a2hs",
+  "background_color": "#56c29e",
   "display": "standalone",
   "theme_color": "#ff9933"
 }
