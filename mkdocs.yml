@@ -54,6 +54,8 @@ plugins:
       lang: fr
       prebuild_index: !!python/object/apply:os.getenv ["MKDOCS_SEARCH_PREBUILD_INDEX"]
       separator: '[\s\-\.]+'
+  - macros:
+      include_dir: content/toc_nav_ignored
   # - redirects:
   #     redirect_maps:
   #       # RSS
@@ -96,6 +98,7 @@ theme:
     - navigation.expand
     - navigation.tabs
     - navigation.top
+    - navigation.tracking
   font: false
   icon:
     repo: fontawesome/brands/github-alt
