@@ -79,3 +79,7 @@ Une fois installé, le plugin s'intègre :
 ## Auteur
 
 --8<-- "content/team/jmou.md"
+
+{% include "licenses/cc_by_sa_4.md" %}
+
+{{ macros_info() }}
