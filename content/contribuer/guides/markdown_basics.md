@@ -24,7 +24,6 @@ Le _[markdown]_ est une syntaxe extensible et son rendu dépend de l'outil utili
 C'est ce dernier qui fait foi.
 
 !!! tip
-
     Pour comprendre comment fonctionne le rendu des contenus, consulter [l'article dédié](/contribuer/build_site/markdown_engine/).
 
 #### Bien démarrer
