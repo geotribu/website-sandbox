@@ -55,7 +55,7 @@ plugins:
       prebuild_index: !!python/object/apply:os.getenv ["MKDOCS_SEARCH_PREBUILD_INDEX"]
       separator: '[\s\-\.]+'
   - macros:
-      include_dir: content/toc_nav_ignored
+      include_dir: content/toc_nav_ignored/snippets
   # - redirects:
   #     redirect_maps:
   #       # RSS
