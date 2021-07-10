@@ -1,8 +1,9 @@
 /* Apply box shadow on smaller screens that don't display tabs */
 @media only screen and (max-width: 1220px) {
   .md-header {
-    box-shadow: 0 0 .2rem rgba(0,0,0,.1),0 .2rem .4rem rgba(0,0,0,.2);
-    transition: color 250ms,background-color 250ms,box-shadow 250ms;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.1),
+      0 0.2rem 0.4rem rgba(0, 0, 0, 0.2);
+    transition: color 250ms, background-color 250ms, box-shadow 250ms;
   }
 }
 
@@ -27,8 +28,13 @@
 
 /* Hero */
 .tx-container {
-  padding-top: .0rem;
-  background: linear-gradient(to bottom, var(--md-primary-fg-color), hsla(160deg,47%,55%,1) 99%,#fff 99%)
+  padding-top: 0rem;
+  background: linear-gradient(
+    to bottom,
+    var(--md-primary-fg-color),
+    #56c29e 99%,
+    #fff 99%
+  );
 }
 
 .tx-hero {
@@ -36,7 +42,7 @@
   margin: 15px;
   max-width: 100%;
   justify-content: center;
-  padding: .1rem;
+  padding: 0.1rem;
   text-align: center;
 }
 
@@ -62,12 +68,10 @@
   max-height: 15px;
 }
 
-
 .tx-hero__content {
   padding-bottom: 1rem;
   margin: auto;
 }
-
 
 .tx-hero__image {
   align-items: stretch;
@@ -92,7 +96,7 @@
 .secondary-section {
   background: rgb(245, 245, 245) none repeat scroll 0% 0%;
   border-top: 1px solid rgb(222, 222, 222);
-  border-bottom: 1px solid rgb(222, 222, 222)
+  border-bottom: 1px solid rgb(222, 222, 222);
 }
 @media screen and (max-width: 1012px) {
   .secondary-section {
@@ -119,7 +123,6 @@
 .secondary-section .g .section.follow {
   padding-top: 0px;
 }
-
 
 .secondary-section .g .section .component-wrapper {
   display: flex;
@@ -215,7 +218,12 @@
   }
 }
 
-.secondary-section .g .section .component-wrapper .responsive-grid a.card-wrapper {
+.secondary-section
+  .g
+  .section
+  .component-wrapper
+  .responsive-grid
+  a.card-wrapper {
   text-decoration: none;
   transition: none;
   background: none;
@@ -224,7 +232,7 @@
 
 .secondary-section .g .section .component-wrapper .responsive-grid .card {
   position: relative;
-  background-color:  #fff none repeat scroll 0% 0%;
+  background-color: #fff none repeat scroll 0% 0%;
   padding: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -233,11 +241,13 @@
   height: 100%;
   -moz-box-pack: start;
   justify-content: flex-start;
-  box-shadow: rgba(0, 0, 0, 0.09) 0.3125rem 0.3125rem 0px -0.0625rem, rgba(0, 0, 0, 0.15) 0px 0.25rem 0.5rem 0px;
+  box-shadow: rgba(0, 0, 0, 0.09) 0.3125rem 0.3125rem 0px -0.0625rem,
+    rgba(0, 0, 0, 0.15) 0px 0.25rem 0.5rem 0px;
   transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
 }
 .secondary-section .g .section .component-wrapper .responsive-grid .card:hover {
-  box-shadow: rgba(0, 0, 0, 0.2) 0.3125rem 0.3125rem 0px -0.0625rem, rgba(0, 0, 0, 0.26) 0px 0.25rem 0.5rem 0px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0.3125rem 0.3125rem 0px -0.0625rem,
+    rgba(0, 0, 0, 0.26) 0px 0.25rem 0.5rem 0px;
 }
 
 @media screen and (min-width: 75rem) {
@@ -257,19 +267,39 @@
   min-width: 1.2rem;
 }
 
-.secondary-section .g .section .component-wrapper .responsive-grid .card .card-content {
+.secondary-section
+  .g
+  .section
+  .component-wrapper
+  .responsive-grid
+  .card
+  .card-content {
   display: flex;
   flex: 1 1 0%;
   flex-direction: column;
   width: 100%;
 }
 
-.secondary-section .g .section .component-wrapper .responsive-grid .card .card-content h5 {
+.secondary-section
+  .g
+  .section
+  .component-wrapper
+  .responsive-grid
+  .card
+  .card-content
+  h5 {
   color: rgb(61, 61, 61);
   margin: 0;
 }
 
-.secondary-section .g .section .component-wrapper .responsive-grid .card .card-content p {
+.secondary-section
+  .g
+  .section
+  .component-wrapper
+  .responsive-grid
+  .card
+  .card-content
+  p {
   margin-top: 0.25em;
   margin-bottom: 0;
   color: rgb(92, 92, 92);
@@ -278,12 +308,18 @@
   line-height: normal;
 }
 
-.secondary-section .g .section .component-wrapper .responsive-grid .card .card-content code {
+.secondary-section
+  .g
+  .section
+  .component-wrapper
+  .responsive-grid
+  .card
+  .card-content
+  code {
   background: rgba(0, 0, 0, 0.05) none repeat scroll 0% 0%;
   padding: 2px 6px;
   border-radius: 4px;
 }
-
 
 .component-wrapper span.em {
   color: rgb(61, 61, 61);
