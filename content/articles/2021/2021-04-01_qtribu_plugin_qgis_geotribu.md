@@ -5,7 +5,7 @@ categories: ["article"]
 date: "2021-08-09 10:20"
 description: "Présentation du plugin de Geotribu pour QGIS : QTribu. Inutile donc forcément indispensable."
 image: "https://cdn.geotribu.fr/img/projets-geotribu/plugin_qtribu/qtribu_article_displayed.png"
-license: default
+license: none
 tags: "QGIS,plugin,Geotribu,QTribu"
 ---
 
@@ -81,6 +81,4 @@ Une fois installé, le plugin s'intègre :
 
 --8<-- "content/team/jmou.md"
 
-{% include "licenses/default.md" %}
-
-{{ macros_info() }}
+{% include "licenses/beerware.md" %}
