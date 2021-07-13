@@ -112,6 +112,15 @@
 
 {% block disqus %}
 
+  {% if not page.is_homepage %}
+    {# Authoring based on git log #}
+    <div class="md-source-date">
+      <small>
+        Contributions à cette page : {{ git_page_authors }}
+      </small>
+    </div>
+  {% endif %}
+
   {# License #}
   {% if not page.is_homepage  and ("license" not in page.meta or page.meta.license == "default") %}
     <div class="md-source-date">
@@ -146,13 +155,6 @@
   {% endif %}
 
   {% if not page.is_homepage %}
-    {# Authoring based on git log #}
-    <div class="md-source-date">
-      <small>
-        Contributions à cette page : {{ git_page_authors }}
-      </small>
-    </div>
-
     {# Comment system (Isso) #}
     <div id="__comments">
       <script

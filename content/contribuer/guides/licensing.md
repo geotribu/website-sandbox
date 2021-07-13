@@ -18,7 +18,7 @@ Geotribu applique une [licence par défaut](#licence-par-defaut) mais permet ég
 
 ## Licence par défaut
 
-Une licence par défaut a été choisie par [l'équipe](/team/). Sauf mention contraire, elle est automatiquement ajoutée dans le bas de page, entre les dates et les taux de contribution :
+Une licence par défaut a été choisie par [l'équipe](/team/). Sauf mention contraire, elle est automatiquement ajoutée dans le bas de page :
 
 ![bandeau licence](https://cdn.geotribu.fr/img/internal/contribution/licensing/license_default.png "Bandeau licence bas de page")
 {: align=middle }
