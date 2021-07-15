@@ -32,7 +32,7 @@
 <div class="md-container secondary-section">
   <div class="g">
     <!-- Revues de presse -->
-    <div class="section">
+    <div class="section" id="revues-de-presse">
       <div class="component-wrapper">
         <div class="first-column">
           <h3>Revues de presse</h3>
@@ -48,7 +48,7 @@
         <div class="second-column">
           <div class="image-wrapper">
             <a href="{{ page.next_page.url | url }}" title="{{ page.next_page.title | e }}" >
-              <img 
+              <img
                 src="{{ page.next_page.meta.image }}"
                 alt="lien vers la {{ page.next_page.title | e }}"
                 loading="lazy"
@@ -119,7 +119,7 @@
     </div>
 
     <!-- Articles -->
-    <div class="section follow">
+    <div class="section follow" id="articles">
       <div class="component-wrapper">
         <div class="first-column">
           <h3>Articles</h3>
@@ -132,7 +132,7 @@
         <div class="second-column">
           <div class="image-wrapper">
             <a href="/articles/2021/2021-07-06_qgis_personnaliser_package_osgeo4w/" title="Préconfigurer QGIS en entreprise avec OSGEO4W, par Régis Haubourg" >
-              <img 
+              <img
                 src="https://cdn.geotribu.fr/img/articles-blog-rdp/articles/qgis_customize_osgeo4w_rha/qgis_osgeo4w_voiture_rallye.png"
                 alt="lien vers le dernier article publié"
                 loading="lazy"
@@ -180,18 +180,18 @@
             </div>
           </a>
 
-          <a class="card-wrapper" href="/contribuer/guides/markdown_basics/">
+          <a class="card-wrapper" href="/articles/2021/2021-05-05_geointerview_ign_sebastien_soriano_annonce/#suivre-et-participer">
             <div class="card">
               <div class="logo">
                 <span class="twemoji">
-                  {% include ".icons/fontawesome/brands/markdown.svg" %}
+                  {% include ".icons/fontawesome/solid/people-carry.svg" %}
                 </span>
               </div>
               <div class="card-content">
-                <h5>Rédigez en Markdown</h5>
+                <h5>Pas le goût ou le temps d'écrire ?</h5>
                 <p>
-                  Tout le site est entièrement rédigé en Markdown, la <i>lingua franca</i> du web.
-                  Découvrez nos guides de rédaction pour un rendu soigné.
+                  Pourquoi ne pas proposer un autre type de contenu :
+                  une interview ? un podcast ? autre chose ?
                 </p>
               </div>
             </div>
