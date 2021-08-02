@@ -27,13 +27,22 @@ body:
     validations:
       required: true
   - type: dropdown
-    id: version
+    id: section
     attributes:
-      label: Version
-      description: What version of our software are you running?
+      label: Section / catégorie
+      description: Dans quelle section ou catégorie appartient cette contribution ?
       options:
-        - 1.0.2 (Default)
-        - 1.0.3 (Edge)
+        - Sorties de la semaine
+        - Client
+        - Serveur
+        - Logiciel
+        - Représentation Cartographique
+        - OpenStreetMap
+        - Google
+        - Open Data
+        - Geo-event
+        - Divers
+        - En bref
     validations:
       required: true
   - type: dropdown
