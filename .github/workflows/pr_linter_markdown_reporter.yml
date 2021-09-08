@@ -14,10 +14,17 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v2
 
+      - name: markdownlint-github-check
+        uses: reviewdog/action-markdownlint@v0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-check
+          level: warning
+          filter_mode: nofilter
+
       - name: markdownlint
         uses: reviewdog/action-markdownlint@v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          fail_on_error: true
-          markdownlint_flags: --config=.markdownlint.json .
+          markdownlint_flags: --config=.markdownlint.json content/
