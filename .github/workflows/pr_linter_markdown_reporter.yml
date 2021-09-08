@@ -16,10 +16,7 @@ jobs:
 
       - name: markdownlint
         uses: reviewdog/action-markdownlint@v0
-        run: markdownlint --config .markdownlint.json --ignore **/template_*.md content/**/*.md
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          level: warning
-          # filter_mode: diff
           markdownlint_flags: "--config .markdownlint.json"
