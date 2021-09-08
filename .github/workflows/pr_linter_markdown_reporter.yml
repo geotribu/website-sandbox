@@ -17,7 +17,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           level: warning
-          filter_mode: added
+          filter_mode: diff
           markdownlint_flags:
             description: "Options of markdownlint-cli command."
             default: "--config .markdownlint.json --ignore **/template_*.md"
