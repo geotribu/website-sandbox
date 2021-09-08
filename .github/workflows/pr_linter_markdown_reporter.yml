@@ -18,5 +18,4 @@ jobs:
           reporter: github-pr-review
           level: warning
           # filter_mode: diff
-          filter_mode: diff
           markdownlint_flags: "--config .markdownlint.json --ignore **/template_*.md"
