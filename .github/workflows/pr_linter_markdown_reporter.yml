@@ -1,3 +1,5 @@
+name: reporter
+
 # Trigger
 on:
   pull_request:
@@ -6,11 +8,12 @@ on:
       - "content/**/*.md"
 
 jobs:
-  markdownlint:
-    name: runner / markdownlint
+  mdlint-report:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - name: Check out code
+        uses: actions/checkout@v2
+
       - name: markdownlint
         uses: reviewdog/action-markdownlint@v0.1
         with:
@@ -18,4 +21,4 @@ jobs:
           reporter: github-pr-review
           level: warning
           # filter_mode: diff
-          markdownlint_flags: "--config .markdownlint.json --ignore **/template_*.md"
+          markdownlint_flags: "--config .markdownlint.json --ignore **/template_*.md content/**/*.md"
