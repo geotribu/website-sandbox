@@ -22,9 +22,9 @@ jobs:
           level: warning
           filter_mode: nofilter
 
-      - name: markdownlint
+      - name: markdownlint-github-pr-review
         uses: reviewdog/action-markdownlint@v0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          markdownlint_flags: --config=.markdownlint.json content/
+          markdownlint_flags: '--config=.markdownlint.json'
