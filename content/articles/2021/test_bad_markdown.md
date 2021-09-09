@@ -1,7 +1,5 @@
 # Hello !
 
-
-
 # Bonjour 2
 
 - salut
