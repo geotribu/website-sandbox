@@ -9,7 +9,7 @@ Les médias d'illustration sont potentiellement soumis à d'autres conditions d'
     Vous êtes autorisé(e) à :
 
     - **Partager** : copier, distribuer et communiquer le matériel par tous moyens et sous tous formats
-    - **Adapter** : remixer, transformer et créer à partir du matériel pour toute utilisation, exceptée commerciale. 
+    - **Adapter** : remixer, transformer et créer à partir du matériel pour toute utilisation, exceptée commerciale.
 
     Citer cet article :
 
