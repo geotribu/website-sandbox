@@ -3,7 +3,7 @@ description: Formulaire pour soumettre une contribution de news à une revue de 
 title: "[News GeoRDP] "
 labels: [contribution, externe, rdp]
 assignees:
-  - aurelienchaumet, Guts, igeofr
+  - Guts
 body:
   - type: markdown
     attributes:
