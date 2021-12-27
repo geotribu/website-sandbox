@@ -41,7 +41,7 @@ jobs:
       - name: Check if git branch aready exists
         shell: bash
         run: |
-          local existed_in_remote=$(git ls-remote --heads origin rdp/${{ github.event.inputs.date }})
+          existed_in_remote=$(git ls-remote --heads origin rdp/${{ github.event.inputs.date }})
 
           if [[ -z ${existed_in_remote} ]]; then
               echo "::notice::La branche de la prochaine RDP n'existe pas encore et sera créée."
