@@ -82,7 +82,7 @@ jobs:
           echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
 
       - name: Slack Notification Demo
-        uses: bryannice/gitactions-slack-notification@2
+        uses: bryannice/gitactions-slack-notification@2.0.0
         env:
           SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
           SLACK_MESSAGE: |
