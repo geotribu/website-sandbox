@@ -55,7 +55,7 @@ jobs:
           committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           delete-branch: true
           # draft: true
-          title: "GeoRDP du $(date -d "${{ github.event.inputs.date }}" '+%d %B %Y')""
+          title: "GeoRDP du $(date -d ${{ github.event.inputs.date }} '+%d %B %Y')"
 
       - name: Notify Slack
         run: |
