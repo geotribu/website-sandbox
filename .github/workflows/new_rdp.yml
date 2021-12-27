@@ -29,12 +29,6 @@ jobs:
       - name: Get source code
         uses: actions/checkout@v2
 
-      - name: Load PR template as variable
-        id: pr-template-var
-        shell: bash
-        run: |
-          echo "::set-output name=pr-body::$(<.github/PULL_REQUEST_TEMPLATE.md)"
-
       - name: Create a new GeoRDP
         shell: bash
         run: |
