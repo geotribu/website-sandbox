@@ -20,10 +20,10 @@ jobs:
         shell: bash
         run: |
           # make file runnable, might not be necessary
-          chmod +x ./tools/new_rdp.sh
+          # chmod +x ./tools/new_rdp.sh
 
           # run script
-          bash ./tools/new_rdp.sh
+          bash ./tools/new_rdp.sh ${{ github.event.inputs.date }}
 
       - name: Notify Slack
         run: echo "Notification sur Slack"
