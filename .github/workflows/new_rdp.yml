@@ -63,6 +63,7 @@ jobs:
         id: cpr
         uses: repo-sync/pull-request@v2
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: rdp/${{ github.event.inputs.date }}
           destination_branch: "main"
           pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
