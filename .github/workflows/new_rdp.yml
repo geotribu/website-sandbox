@@ -44,20 +44,20 @@ jobs:
           # run script
           bash ./tools/new_rdp.sh ${{ github.event.inputs.date }}
 
-      # - name: New branch
-      #   run: |
-      #     git config user.name ${{ github.actor }}
-      #     git config user.email 'geotribu@gmail.com'
-      #     git checkout -b rdp/${{ github.event.inputs.date }}
-      #     git status
+      - name: New branch
+        run: |
+          git config user.name ${{ github.actor }}
+          git config user.email '${{ github.actor }}@users.noreply.github.com'
+          git checkout -b rdp/${{ github.event.inputs.date }}
+          git status
 
-      # - name: Commit new GeoRDP
-      #   run: |
-      #     git add content/rdp/
-      #     git commit -am "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
+      - name: Commit new GeoRDP
+        run: |
+          git add content/rdp/
+          git commit -am "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
 
-      # - name: Push to remote
-      #   run: git push origin rdp/${{ github.event.inputs.date }}
+      - name: Push to remote
+        run: git push origin rdp/${{ github.event.inputs.date }}
 
       - name: Create Pull Request
         id: cpr
