@@ -11,6 +11,10 @@ on:
         type: boolean
         description: Notifie l'équipe sur Slack
 
+env:
+  LANG: "fr_FR.UTF-8"
+  LC_ALL: "fr_FR.UTF-8"
+
 jobs:
   create_rdp:
     runs-on: ubuntu-latest
@@ -47,10 +51,11 @@ jobs:
         id: cpr
         uses: peter-evans/create-pull-request@v3
         with:
-          commit-message: "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
+          commit-message: "GeoRDP du ${{ github.event.inputs.date }}"
           committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
           delete-branch: true
-          draft: true
+          # draft: true
+          title: "GeoRDP du $(date -d "${{ github.event.inputs.date }}" '+%d %B %Y')""
 
       - name: Notify Slack
         run: |
