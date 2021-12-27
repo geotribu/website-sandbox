@@ -29,12 +29,6 @@ jobs:
       - name: Get source code
         uses: actions/checkout@v2
 
-      - name: Load PR template as variable
-        id: pr-template-var
-        shell: bash
-        run: |
-          echo "::set-output name=pr-body::$(<.github/PULL_REQUEST_TEMPLATE.md)"
-
       - name: Create a new GeoRDP
         shell: bash
         run: |
@@ -48,8 +42,18 @@ jobs:
         run: |
           git config user.name ${{ github.actor }}
           git config user.email '${{ github.actor }}@users.noreply.github.com'
-          git checkout -b rdp/${{ github.event.inputs.date }}
+          git checkout -b rdp/${{ github.event.inputs.date }} origin/rdp/${{ github.event.inputs.date }}
           git status
+
+      - name: Check git branch exists
+        shell: bash
+        run: |
+          if test (git ls-remote | grep rdp/${{ github.event.inputs.date }})
+            echo "::error::La branche existe déjà. Le risque d'écrasement est trop important !"
+            exit 1
+          else
+            echo "::notice::La branche de la prochaine RDP n'existe pas encore et sera créée."
+          end
 
       - name: Commit new GeoRDP
         run: |
@@ -66,12 +70,21 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: rdp/${{ github.event.inputs.date }}
           destination_branch: "main"
+          pr_allow_empty: false
           pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
           pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
       - name: Notify Slack
         run: |
           echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
+
+      #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
+
+      # - name: Load PR template as variable
+      #   id: pr-template-var
+      #   shell: bash
+      #   run: |
+      #     echo "::set-output name=pr-body::$(<.github/PULL_REQUEST_TEMPLATE.md)"
 
       # - name: Create Pull Request
       #   id: cpr
