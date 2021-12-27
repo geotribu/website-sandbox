@@ -33,12 +33,15 @@ jobs:
           git config user.name ${{ github.actor }}
           git config user.email 'geotribu@gmail.com'
           git checkout -b rdp/${{ github.event.inputs.date }}
+          git status
 
-      - name: Push to remote
-        run: git push origin rdp/${{ github.event.inputs.date }}
+      # - name: Push to remote
+      #   run: git push origin rdp/${{ github.event.inputs.date }}
 
       - name: Commit new GeoRDP
-        run: git commit -am "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
+        run: |
+          git add content/rdp/
+          git commit -am "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
 
       - name: Notify Slack
         run: echo "Notification sur Slack"
