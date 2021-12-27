@@ -81,6 +81,17 @@ jobs:
         run: |
           echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
 
+      - name: Slack Notification Demo
+        uses: bryannice/gitactions-slack-notification@2
+        env:
+          SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
+          SLACK_MESSAGE: |
+            C'est reparti pour une nouvelle RDP :
+
+              - la PR : ${{ steps.cpr.outputs.pr_url }}
+              - la preview : https://preview-pullrequest-${{steps.open-pr.outputs.pr_number}}--geotribu-preprod.netlify.app/
+          SLACK_TITLE: ':newspaper_roll: GeoRDP du ${{ github.event.inputs.date }}'
+
       #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
 
       # - name: Load PR template as variable
