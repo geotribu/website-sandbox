@@ -76,6 +76,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           source_branch: rdp/${{ github.event.inputs.date }}
           destination_branch: "main"
+          pr_allow_empty: false
           pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
           pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
