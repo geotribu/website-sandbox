@@ -1,0 +1,28 @@
+name: "🗞 New GeoRDP"
+
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        type: string
+        description: Date de la prochaine RDP au format YYYY-MM-DD
+        required: true
+      notify-slack:
+        type: boolean
+        description: Notifie l'équipe sur Slack
+
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create a new GeoRDP
+        run: |
+          # make file runnable, might not be necessary
+          chmod +x "${GITHUB_WORKSPACE}/tools/new_rdp.sh"
+
+          # run script
+          "${GITHUB_WORKSPACE}/tools/new_rdp.sh"
+
+      - name: Notify Slack
+        run: echo "Notification sur Slack"
