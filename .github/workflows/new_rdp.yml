@@ -89,8 +89,8 @@ jobs:
             C'est reparti pour une nouvelle RDP :
 
               - la PR : ${{ steps.cpr.outputs.pr_url }}
-              - la preview : https://preview-pullrequest-${{steps.open-pr.outputs.pr_number}}--geotribu-preprod.netlify.app/
-          SLACK_TITLE: ':newspaper_roll: GeoRDP du ${{ github.event.inputs.date }}'
+              - la preview : https://preview-pullrequest-${{steps.cpr.outputs.pr_number}}--geotribu-preprod.netlify.app/
+          SLACK_TITLE: " GeoRDP du ${{ github.event.inputs.date }}"
 
       #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
 
