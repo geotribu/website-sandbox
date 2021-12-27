@@ -23,7 +23,7 @@ jobs:
           chmod +x ./tools/new_rdp.sh
 
           # run script
-          ./tools/new_rdp.sh
+          bash ./tools/new_rdp.sh
 
       - name: Notify Slack
         run: echo "Notification sur Slack"
