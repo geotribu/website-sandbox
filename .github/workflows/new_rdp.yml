@@ -18,6 +18,8 @@ jobs:
     steps:
       - name: Get source code
         uses: actions/checkout@v2
+        with:
+          ref: "rdp/${{ github.event.inputs.date }}"
 
       - name: Create a new GeoRDP
         shell: bash
