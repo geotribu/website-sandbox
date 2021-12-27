@@ -83,6 +83,14 @@ jobs:
         run: |
           echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
 
+      #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
+
+      # - name: Load PR template as variable
+      #   id: pr-template-var
+      #   shell: bash
+      #   run: |
+      #     echo "::set-output name=pr-body::$(<.github/PULL_REQUEST_TEMPLATE.md)"
+
       # - name: Create Pull Request
       #   id: cpr
       #   uses: peter-evans/create-pull-request@v3
