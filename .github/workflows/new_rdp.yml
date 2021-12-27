@@ -12,11 +12,12 @@ on:
         description: Notifie l'équipe sur Slack
 
 jobs:
-  greet:
+  create_rdp:
     runs-on: ubuntu-latest
 
     steps:
       - name: Create a new GeoRDP
+        shell: bash
         run: |
           # make file runnable, might not be necessary
           chmod +x "${GITHUB_WORKSPACE}/tools/new_rdp.sh"
