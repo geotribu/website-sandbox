@@ -16,6 +16,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Get source code
+        uses: actions/checkout@v2
+
       - name: Create a new GeoRDP
         shell: bash
         run: |
