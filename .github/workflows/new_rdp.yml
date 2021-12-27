@@ -85,11 +85,11 @@ jobs:
         uses: bryannice/gitactions-slack-notification@2.0.0
         env:
           SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
-          SLACK_MESSAGE: |
-            C'est reparti pour une nouvelle RDP :
+          SLACK_MESSAGE: "hop"
+            # C'est reparti pour une nouvelle RDP :
 
-              - la PR : ${{ steps.cpr.outputs.pr_url }}
-              - la preview : https://preview-pullrequest-${{steps.cpr.outputs.pr_number}}--geotribu-preprod.netlify.app/
+            #   - la PR : ${{ steps.cpr.outputs.pr_url }}
+            #   - la preview : https://preview-pullrequest-${{steps.cpr.outputs.pr_number}}--geotribu-preprod.netlify.app/
           SLACK_TITLE: " GeoRDP du ${{ github.event.inputs.date }}"
 
       #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
