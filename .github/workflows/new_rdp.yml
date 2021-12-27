@@ -61,16 +61,29 @@ jobs:
 
       - name: Create Pull Request
         id: cpr
-        uses: peter-evans/create-pull-request@v3
+        uses: repo-sync/pull-request@v2
         with:
-          branch: rdp/${{ github.event.inputs.date }}
-          commit-message: "GeoRDP du ${{ github.event.inputs.date }}"
-          committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
-          delete-branch: true
-          # draft: true
-          title: "GeoRDP du ${{ github.event.inputs.date }}"
-          body: "${{ steps.pr-template-var.outputs.pr-body }}"
+          source_branch: rdp/${{ github.event.inputs.date }}
+          destination_branch: "main"
+          pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
+          pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
       - name: Notify Slack
         run: |
-          echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+          echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
+
+      # - name: Create Pull Request
+      #   id: cpr
+      #   uses: peter-evans/create-pull-request@v3
+      #   with:
+      #     branch: rdp/${{ github.event.inputs.date }}
+      #     commit-message: "GeoRDP du ${{ github.event.inputs.date }}"
+      #     committer: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+      #     delete-branch: true
+      #     # draft: true
+      #     title: "GeoRDP du ${{ github.event.inputs.date }}"
+      #     body: "${{ steps.pr-template-var.outputs.pr-body }}"
+
+      # - name: Notify Slack
+      #   run: |
+      #     echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
