@@ -77,20 +77,29 @@ jobs:
           pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
           pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
-      - name: Notify Slack
-        run: |
-          echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
+      # - name: Notify Slack
+      #   run: |
+      #     echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pr_url }}"
 
-      - name: Slack Notification Demo
-        uses: bryannice/gitactions-slack-notification@2.0.0
+      # - name: Slack Notification Demo
+      #   uses: bryannice/gitactions-slack-notification@2.0.0
+      #   env:
+      #     SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
+      #     SLACK_MESSAGE: "hop"
+      #       # C'est reparti pour une nouvelle RDP :
+
+      #       #   - la PR : ${{ steps.cpr.outputs.pr_url }}
+      #       #   - la preview : https://preview-pullrequest-${{steps.cpr.outputs.pr_number}}--geotribu-preprod.netlify.app/
+      #     SLACK_TITLE: " GeoRDP du ${{ github.event.inputs.date }}"
+
+      - name: Notification Slack
+        id: slack
+        uses: slackapi/slack-github-action@v1.16
+        with:
+          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new request: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Type:* Computer (laptop)"},{"type":"mrkdwn","text":"*When:* Submitted Aut 10"}]}]}'
         env:
-          SLACK_INCOMING_WEBHOOK: ${{ secrets.SLACK_INCOMING_WEBHOOK }}
-          SLACK_MESSAGE: "hop"
-            # C'est reparti pour une nouvelle RDP :
-
-            #   - la PR : ${{ steps.cpr.outputs.pr_url }}
-            #   - la preview : https://preview-pullrequest-${{steps.cpr.outputs.pr_number}}--geotribu-preprod.netlify.app/
-          SLACK_TITLE: " GeoRDP du ${{ github.event.inputs.date }}"
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+          SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
       #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
 
