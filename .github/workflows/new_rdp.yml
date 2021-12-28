@@ -96,7 +96,7 @@ jobs:
         id: slack
         uses: slackapi/slack-github-action@v1.16
         with:
-          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":"You have a new request: "}},{"type":"section","fields":[{"type":"mrkdwn","text":"*Type:* Computer (laptop)"},{"type":"mrkdwn","text":"*When:* Submitted Aut 10"}]}]}'
+          payload: '{"blocks":[{"type":"section","text":{"type":"mrkdwn","text":":newspaper: La GeoRDP du ${{ github.event.inputs.date }} a été créée et attend vos contributions :writing_hand: !"}},{"type":"section","fields":[{"type":"mrkdwn","text":"Créée par **${{ github.actor }}** via GitHub Action."}]},{"type":"actions","elements":[{"type":"button","text":{"type":"plain_text","emoji":true,"text":":squid: Voir la PR (GitHub)"},"url":"${{ steps.cpr.outputs.pr_url }}"},{"type":"button","text":{"type":"plain_text","emoji":true,"text":":eye: Voir la preview (Netlify)"},"style":"primary","url":"http://hop.com"}]}]}'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
