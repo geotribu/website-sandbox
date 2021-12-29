@@ -64,7 +64,7 @@ jobs:
           source_branch: rdp/${{ github.event.inputs.date }}
           destination_branch: "main"
           pr_allow_empty: false
-          pr_title: "GeoRDP du ${{ steps.locale-fr.outputs.date-fr-long }}"
+          pr_title: "🗞 GeoRDP du ${{ steps.locale-fr.outputs.date-fr-long }}"
           pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
       - name: Notification Slack
