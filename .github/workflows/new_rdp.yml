@@ -22,9 +22,12 @@ jobs:
 
     steps:
       - name: Install French locale
+        id: locale-fr
+        shell: bash
         run: |
           sudo locale-gen fr_FR.UTF-8
           sudo update-locale LANG=fr_FR.UTF-8
+          echo "::set-output name=date-fr-long::$(date -d ${{ github.event.inputs.date }} '+%-d %B %Y')"
 
       - name: Get source code
         uses: actions/checkout@v2
@@ -46,11 +49,9 @@ jobs:
           git status
 
       - name: Commit new GeoRDP
-        shell: bash
         run: |
-          echo $(date -d "${github.event.inputs.date}" '+%-d %B %Y')
           git add content/rdp/
-          git commit -am "🗞 Crée la GeoRDP du $(date -d ${{ github.event.inputs.date }} '+%-d %B %Y') "
+          git commit -am "Crée la GeoRDP ${{ github.event.inputs.date }}"
 
       - name: Push to remote
         run: git push origin rdp/${{ github.event.inputs.date }}
@@ -63,7 +64,7 @@ jobs:
           source_branch: rdp/${{ github.event.inputs.date }}
           destination_branch: "main"
           pr_allow_empty: false
-          pr_title: "GeoRDP du ${{ github.event.inputs.date }}"
+          pr_title: "GeoRDP du ${{ steps.locale-fr.outputs.date-fr-long }}"
           pr_template: .github/PULL_REQUEST_TEMPLATE.md
 
       - name: Notification Slack
@@ -76,7 +77,7 @@ jobs:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
           SLACK_WEBHOOK_TYPE: INCOMING_WEBHOOK
 
-      #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE
+      #  AUTRE METHODE MAIS QUI NE PERMET PAS D'UTILISER LE TEMPLATE DE PR
 
       # - name: Load PR template as variable
       #   id: pr-template-var
@@ -95,7 +96,3 @@ jobs:
       #     # draft: true
       #     title: "GeoRDP du ${{ github.event.inputs.date }}"
       #     body: "${{ steps.pr-template-var.outputs.pr-body }}"
-
-      # - name: Notify Slack
-      #   run: |
-      #     echo "Notification sur Slack : Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
