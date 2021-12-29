@@ -38,19 +38,6 @@ jobs:
           # run script
           bash ./tools/new_rdp.sh ${{ github.event.inputs.date }}
 
-      - name: Check if git branch aready exists
-        shell: bash
-        run: |
-          existed_in_remote=$(git ls-remote --heads origin rdp/${{ github.event.inputs.date }})
-
-          if [[ -z ${existed_in_remote} ]]; then
-              echo "::notice::La branche de la prochaine RDP n'existe pas encore et sera créée."
-              echo 0
-          else
-              echo "::error::La branche existe déjà. Le risque d'écrasement est trop important !"
-              exit 1
-          fi
-
       - name: New branch
         run: |
           git config user.name ${{ github.actor }}
