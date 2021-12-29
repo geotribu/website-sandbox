@@ -62,7 +62,7 @@ existed_in_remote=$(git ls-remote --heads origin rdp/"$date_formatted")
 if [[ -z ${existed_in_remote} ]]; then
     echo -e "\e[32mLa branche de la prochaine RDP n'existe pas encore et sera créée."
 else
-    echo -e "\e[31mLa branche existe déjà sur le dépôt principal (GitHub).\e[33m\nLe risque d'écrasement est trop important, mieux vaut travailler sur la branche distante existante."
+    echo -e "\e[31mLa branche existe déjà sur le dépôt principal (GitHub).\e[33m\nPour ne pas risquer d'écraser, on bascule sur la branche distante existante et on s'arrête là."
     git checkout --progress --track origin/rdp/"$date_formatted"
     exit 1
 fi
