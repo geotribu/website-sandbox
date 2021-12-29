@@ -46,9 +46,11 @@ jobs:
           git status
 
       - name: Commit new GeoRDP
+        shell: bash
         run: |
+          echo $(date -d "${github.event.inputs.date}" '+%-d %B %Y')
           git add content/rdp/
-          git commit -am "🗞 Crée la GeoRDP du ${{ github.event.inputs.date }}"
+          git commit -am "🗞 Crée la GeoRDP du $(date -d ${{ github.event.inputs.date }} '+%-d %B %Y') "
 
       - name: Push to remote
         run: git push origin rdp/${{ github.event.inputs.date }}
