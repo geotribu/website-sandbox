@@ -1,10 +1,23 @@
 ---
 title: "Rédiger en Markdown : bases et spécimen"
-categories: ["contribution"]
+categories:
+    - article
+    - contribution
+    - tutoriel
 date: 2020-09-14 14:20
 description: "Maîtriser les bases de la rédaction en Markdown pour contribuer à Geotribu et exemples de mise en forme."
 image: "https://cdn.geotribu.fr/img/internal/contribution/markdown_quick_exemple_rendu.png"
-tags: contribuer,tutoriel,markdown,rédaction,python,html,markdownlint
+tags:
+    - contribuer
+    - HTML
+    - lint
+    - Markdown
+    - rédaction
+    - Python
+    - tutoriel
+# theme customizations
+search:
+  exclude: true
 ---
 
 # Les bases de rédaction en Markdown
@@ -18,13 +31,13 @@ Compte-tenu de la popularité du [Markdown], inutile de réinventer la roue, aut
 Le _[markdown]_ est une syntaxe extensible et son rendu dépend de l'outil utilisé pour l'implémenter. Il existe donc des différences entre le rendu :
 
 - dans l'onglet `Preview` de [GitHub],
-- celui dans un éditeur [Visual Studio Code]
+- celui dans un éditeur de texte ([Visual Studio Code], Sublime Text, HackMD, Hedgedoc...)
 - celui de l'outil utilisé pour le rendu final [MkDocs / Material](https://squidfunk.github.io/mkdocs-material/).
 
-C'est ce dernier qui fait foi.
+C'est **ce dernier qui fait foi**.
 
 !!! tip
-    Pour comprendre comment fonctionne le rendu des contenus, consulter [l'article dédié](/contribuer/build_site/markdown_engine/).
+    Pour comprendre comment fonctionne le rendu des contenus, consulter [l'article dédié](/contribuer/internal/markdown_engine/).
 
 #### Bien démarrer
 
@@ -39,7 +52,7 @@ C'est ce dernier qui fait foi.
 
 ### Editeurs
 
-N'importe quel éditeur de texte "plat" suffit pour rédiger en [Markdown].
+N'importe quel éditeur de texte suffit pour rédiger en [Markdown]. Ci-dessous, voici une liste très loin d'être exhaustive d'outils permettant de rédiger en Markdown.
 
 #### Bureautique
 
@@ -49,14 +62,14 @@ N'importe quel éditeur de texte "plat" suffit pour rédiger en [Markdown].
 
 #### En ligne
 
+- [GitHub](https://docs.github.com/en/github/writing-on-github)
 - [StackEdit]
 - [Upmath]
 
 !!! tip
-
     Le choix du Markdown pour Geotribu a été détaillé dans l'article [Du HTML au Markdown (et vice-versa)](/articles/2020/2020-09-11_html2markdown/). Il contient quelques éléments de compréhension sur la syntaxe et un petit TP pour s'exercer.
 
-[Prochaine étape : respecter et valider la syntaxe :fontawesome-solid-step-forward:](/contribuer/guides/markdown_quality/){: .md-button }
+[Prochaine étape : respecter et valider la syntaxe :fontawesome-solid-forward:](/contribuer/guides/markdown_quality/){: .md-button }
 {: align=middle }
 
 ----
@@ -67,6 +80,7 @@ En plus des ressources, à suivre quelques exemples de base.
 
 ### Titres et paragraphes
 
+<!-- markdownlint-disable MD046 -->
 === "Markdown"
 
     ```markdown
@@ -89,7 +103,7 @@ En plus des ressources, à suivre quelques exemples de base.
 
     En Markdown, les sauts de ligne font foi. Avant d'entamer le paragraphe, il faut sauter une ligne. De même entre deux paragraphes, il faut laisser une ligne vide.
 
-### Format
+### Mise en forme
 
 === "Markdown"
 
@@ -166,12 +180,11 @@ En plus des ressources, à suivre quelques exemples de base.
         + signe plus (\+)
     * mais, pour éviter les effets de bord (espacement de paragraphe, mauvais niveau de retrait...) et selon les règles établies, il est préférable de rester cohérent dans le caractère utilisé, au moins dans un même document
     * en général, on utilise l'astérisque ou alors le tiret.
+<!-- markdownlint-enable MD046 -->
 
-[Prochaine étape : respecter et valider la syntaxe :fontawesome-solid-step-forward:](/contribuer/guides/markdown_quality/){: .md-button }
+[Prochaine étape : respecter et valider la syntaxe :fontawesome-solid-forward:](/contribuer/guides/markdown_quality/){: .md-button }
 {: align=middle }
 
 <!-- Hyperlinks references -->
 [Markdown]: https://daringfireball.net/projects/markdown/
 [syntaxe]: https://daringfireball.net/projects/markdown/syntax
-[StackEdit]: https://stackedit.io/
-[Upmath]: https://upmath.me/

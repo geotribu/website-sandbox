@@ -1,9 +1,14 @@
 ---
 title: Contribuer à Geotribu
-categories: ["contribution"]
+categories:
+  - contribution
 date: 2020-03-20 10:20
 description: "Envie de contribuer à Geotribu ? On vous guide sur le pourquoi du comment."
-tags: contribuer, introduction
+tags:
+  - contribuer
+# theme customizations
+search:
+  exclude: true
 ---
 
 # Introduction
@@ -22,5 +27,5 @@ Bref, c'est ouvert :wink: :smile: ! Pas besoin d'être dans l'équipe _officiell
     Un blocage ? Un souci ? Une angoisse existentielle apparue pendant le procédé de contribution ?
     N'hésitez pas à nous contacter sur [Slack](https://geotribu.slack.com/), les réseaux sociaux ([Twitter de Julien](https://twitter.com/geojulien)) ou [par email :email:](mailto:geotribu@gmail.com).
 
-[Prochaine étape : vérifier les prérequis :fontawesome-solid-step-forward:](/contribuer/requirements/){: .md-button }
+[Prochaine étape : vérifier les prérequis :fontawesome-solid-forward:](/contribuer/requirements/){: .md-button }
 {: align=middle }
