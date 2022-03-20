@@ -1,0 +1,32 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: "Issues auto-comment"
+on:
+  issues:
+    types:
+      - reopened
+      - opened
+jobs:
+  label_issues:
+    runs-on: ubuntu-latest
+
+    permissions:
+      issues: write
+
+    steps:
+
+      - name: Run Issue form parser
+        id: parse
+        uses: peter-murray/issue-forms-body-parser@v2
+        with:
+          issue_id: ${{ github.event.issue.number }}
+          separator: '###'
+          label_marker_start: '>>'
+          label_marker_end: '<<'
+
+      - name: Show parsed data JSON
+        run: |
+          echo "${{ steps.parse.outputs.payload }}"
