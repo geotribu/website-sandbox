@@ -3,8 +3,8 @@ name: "Pull Request Checker 🛃"
 # Inspired from: https://github.com/docker-mailserver/docker-mailserver/blob/master/.github/workflows/docs-preview-prepare.yml
 
 on:
-  push:
-    branches: [main]
+  # push:
+  #   branches: [main]
   pull_request:
     branches: [main]
 
@@ -25,6 +25,7 @@ jobs:
   build:
     name: "Check site build 📦"
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'geotribu' }}
 
     steps:
       - name: Get source code
@@ -37,33 +38,51 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
+        id: dependencies
         env:
           GH_TOKEN_MATERIAL_INSIDERS: ${{ secrets.GH_TOKEN_MATERIAL_INSIDERS }}
         run: |
           python -m pip install -U pip setuptools wheel
-          python -m pip install -U -r requirements.txt
-          python -m pip install -U -r requirements-insiders.txt
+
+          # if secret (PR created by repo collaborator) exists = paid features, else only free
+          if [[ -z "${GH_TOKEN_MATERIAL_INSIDERS}" ]]; then
+            echo "::warning:: L'accès aux token est réservé aux comptes avec droits d'écriture sur le dépôt. La version gratuite du thème est donc utilisée sans mots-clés, etc.)"
+            python -m pip install -U -r requirements-free.txt
+            echo "::set-output name=config_path::mkdocs-free.yml"
+          else
+            # install insiders version using token
+            python -m pip install -U -r requirements-insiders.txt
+            echo "::set-output name=config_path::mkdocs.yml"
+          fi
 
       - name: Build in strict mode
         env:
-          MKDOCS_SEARCH_PREBUILD_INDEX: node
           NETLIFY_BRANDING: '<a href="https://www.netlify.com/"><img alt="Deploys by Netlify" src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg" style="float: right;"></a>'
         run: |
-          # Adjust mkdocs.yml for preview build
-          sed -i "s|^site_url:.*|site_url: https://${NETLIFY_SITE_PREFIX}--${NETLIFY_SITE_NAME}.netlify.app/ |" mkdocs.yml
+          # site name
+          sed -i "s|^site_name:.*|site_name: Geotribu PREVIEW |" ${{steps.dependencies.outputs.config_path}}
+
+          # Adjust ${{steps.dependencies.outputs.config_path}} for preview build
+          sed -i "s|^site_url:.*|site_url: https://${NETLIFY_SITE_PREFIX}--${NETLIFY_SITE_NAME}.netlify.app/ |" ${{steps.dependencies.outputs.config_path}}
 
           # Insert sponsor branding into page content (Provider OSS plan requirement):
           # Upstream does not provide a nicer maintainable way to do this..
           # Prepends HTML to copyright text and then aligns to the right side.
-          sed -i "s|^copyright: '|copyright: '${NETLIFY_BRANDING}|" mkdocs.yml
+          sed -i "s|^copyright: '|copyright: '${NETLIFY_BRANDING}|" ${{steps.dependencies.outputs.config_path}}
+
+          # set repo and branch
+          sed -i "s|^repo_url:.*|repo_url: https://github.com/$GITHUB_REPOSITORY |" ${{steps.dependencies.outputs.config_path}}
+          sed -i "s|^edit_uri:.*|edit_uri: edit/$GITHUB_HEAD_REF/content |" ${{steps.dependencies.outputs.config_path}}
 
           # build
-          mkdocs build --config-file mkdocs.yml --verbose --strict
+          mkdocs build --config-file ${{steps.dependencies.outputs.config_path}} --verbose --strict
 
           # save mkdocs.yml for debug
-          cp mkdocs.yml ${{ env.BUILD_DIR }}
+          cp ${{steps.dependencies.outputs.config_path}} ${{ env.BUILD_DIR }}
 
           # remove files reserved for production
+          rm ${{ env.BUILD_DIR }}/CNAME
+          rm ${{ env.BUILD_DIR }}/robots.txt
           rm ${{ env.BUILD_DIR }}/sitemap.xml
           rm ${{ env.BUILD_DIR }}/sitemap.xml.gz
 
@@ -72,12 +91,16 @@ jobs:
       - name: "Prepare artifact for transfer"
         run: |
           # Save ENV for transfer
+          echo "GITHUB_REPOSITORY=$GITHUB_REPOSITORY"                 >> pr.env
+          echo "GITHUB_HEAD_REF=$GITHUB_HEAD_REF"                     >> pr.env
           echo "PR_HEADSHA=${{ github.event.pull_request.head.sha }}" >> pr.env
           echo "PR_NUMBER=${{ github.event.pull_request.number }}"    >> pr.env
           echo "PR_TITLE=${{ github.event.pull_request.title }}"      >> pr.env
           echo "NETLIFY_SITE_NAME=${{ env.NETLIFY_SITE_NAME }}"       >> pr.env
           echo "NETLIFY_SITE_PREFIX=${{ env.NETLIFY_SITE_PREFIX }}"   >> pr.env
           echo "BUILD_DIR=${{ env.BUILD_DIR }}"                       >> pr.env
+
+          # archive build dir
           tar --zstd -cf artifact.tar.zst pr.env ${{ env.BUILD_DIR }}
 
       - name: Save build website as artifact
