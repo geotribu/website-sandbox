@@ -13,9 +13,10 @@
     font-weight: bold !important;
 }
 .md-tabs__link:hover {
-    color: var(--md-accent-fg-color);
+    color: var(--md-accent-fg-color--light);
     font-size: .80rem !important;
     font-weight: bold;
+    transition: 0.2s ease transform;
 }
 
 /* Custom images */
