@@ -81,8 +81,6 @@ jobs:
           cp ${{steps.dependencies.outputs.config_path}} ${{ env.BUILD_DIR }}
 
           # remove files reserved for production
-          rm ${{ env.BUILD_DIR }}/CNAME
-          rm ${{ env.BUILD_DIR }}/robots.txt
           rm ${{ env.BUILD_DIR }}/sitemap.xml
           rm ${{ env.BUILD_DIR }}/sitemap.xml.gz
 
